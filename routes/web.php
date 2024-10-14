@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MenuController;
 
+use App\Http\Controllers\Frontend\HomeController;
+
 // 認證路由
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
@@ -45,6 +47,4 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'backend.
 });
 
 // 默認重定向
-Route::get('/', function () {
-    return redirect()->route('backend.dashboard');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
