@@ -30,9 +30,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('backend.menus.index') }}">
+            <a class="nav-link" href="{{ route('backend.categories.index') }}">
                 <i class="icon-menu menu-icon"></i>
-                <span class="menu-title">選單管理</span>
+                <span class="menu-title">分類管理</span>
             </a>
         </li>
 

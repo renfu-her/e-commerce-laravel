@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\MenuController;
-
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
 
 // 認證路由
@@ -44,6 +44,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'backend.
 
     // 選單管理路由
     Route::resource('menus', MenuController::class);
+
+    // 分類管理路由
+    Route::resource('categories', CategoryController::class);
 });
 
 // 默認重定向

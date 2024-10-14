@@ -9,11 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['menu_id', 'name', 'price', 'description'];
+    protected $fillable = ['category_id', 'name', 'price', 'description'];
 
-    public function menu()
+    // 定義與分類的關聯
+    public function category()
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function images()

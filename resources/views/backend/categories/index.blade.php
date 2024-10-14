@@ -3,10 +3,10 @@
 @section('content')
     <div class="container mt-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>產品列表</h2>
-            <a class="btn btn-primary" href="{{ route('backend.products.create') }}">
+            <h2>分類列表</h2>
+            <a class="btn btn-primary" href="{{ route('backend.categories.create') }}">
                 <i class="mdi mdi-plus"></i>
-                新增產品
+                新增分類
             </a>
         </div>
 
@@ -16,28 +16,26 @@
             </div>
         @endif
 
-        <table id="productsTable" class="table table-bordered">
+        <table id="categoriesTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>分類</th>
                     <th>名稱</th>
-                    <th>價格</th>
+                    <th>父分類</th>
                     <th style="width: 17%">操作</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($products as $product)
+                @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $product->category->name }}</td>
-                        <td>{{ $product->name }}</td>
-                        <td>{{ $product->price }}</td>
+                        <td>{{ $category->name }}</td>
+                        <td>{{ $category->parent ? $category->parent->name : '無' }}</td>
                         <td>
-                            <a class="btn btn-info m-1" href="{{ route('backend.products.edit', $product->id) }}">
+                            <a class="btn btn-info m-1" href="{{ route('backend.categories.edit', $category->id) }}">
                                 <i class="fas fa-edit"></i>
                                 編輯
                             </a>
-                            <form action="{{ route('backend.products.destroy', $product->id) }}" method="POST"
-                                class="d-inline-block" onsubmit="return confirm('您確定要刪除這個產品嗎？');">
+                            <form action="{{ route('backend.categories.destroy', $category->id) }}" method="POST"
+                                class="d-inline-block" onsubmit="return confirm('您確定要刪除這個分類嗎？');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger m-1">
@@ -47,6 +45,28 @@
                             </form>
                         </td>
                     </tr>
+
+                    @foreach ($category->children as $child)
+                        <tr>
+                            <td> -- {{ $child->name }}</td>
+                            <td>{{ $child->parent ? $child->parent->name : '無' }}</td>
+                            <td>
+                                <a class="btn btn-info m-1" href="{{ route('backend.categories.edit', $child->id) }}">
+                                    <i class="fas fa-edit"></i>
+                                    編輯
+                                </a>
+                                <form action="{{ route('backend.categories.destroy', $child->id) }}" method="POST"
+                                    class="d-inline-block" onsubmit="return confirm('您確定要刪除這個分類嗎？');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger m-1">
+                                        <i class="fas fa-trash"></i>
+                                        刪除
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
                 @endforeach
             </tbody>
         </table>
@@ -65,7 +85,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(function() {
-            $('#productsTable').DataTable({
+            $('#categoriesTable').DataTable({
                 "language": {
                     "lengthMenu": "顯示 _MENU_ 筆資料",
                     "zeroRecords": "沒有符合的結果",
@@ -83,7 +103,9 @@
                 "columnDefs": [{
                     "orderable": false,
                     "targets": -1
-                }]
+                }],
+                "responsive": true,
+                "ordering": false,
             });
         });
     </script>
