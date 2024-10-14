@@ -6,8 +6,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\MenuController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\MenuController;
 
 use App\Http\Controllers\Frontend\HomeController;
 
