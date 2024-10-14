@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\ImageUploadController;
 
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\MenuController;
@@ -51,3 +52,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'backend.
 
 // 默認重定向
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('image.upload');
