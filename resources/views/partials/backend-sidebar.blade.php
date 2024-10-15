@@ -2,8 +2,8 @@
     <ul class="nav">
         <li class="nav-item nav-profile">
             <div class="nav-link">
-                <div class="profile-image">
-                    <img src="https://via.placeholder.com/36x36" alt="image" />
+                <div class="d-flex justify-content-center">
+                    <h2>後台管理</h2>
                     <span class="online-status online"></span> <!--change class online to offline or busy as needed-->
                 </div>
                 <div class="profile-name">

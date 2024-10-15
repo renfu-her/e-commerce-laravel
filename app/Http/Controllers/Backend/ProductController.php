@@ -35,7 +35,7 @@ class ProductController extends Controller
             'category_id' => 'required|exists:categories,id',
             'description' => 'required', // 驗證 description 欄位
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'images.*' => 'image|max:10240',
         ]);
 
         // 創建產品
@@ -66,13 +66,15 @@ class ProductController extends Controller
     // 更新產品
     public function update(Request $request, Product $product)
     {
+
+        //dd($request->file('images'));
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required', // 驗證 description 欄位
             'images' => 'nullable',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
+            'images.*' => 'image|max:10240',
         ]);
 
         $product->update($request->all());

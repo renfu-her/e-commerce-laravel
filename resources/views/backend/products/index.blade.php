@@ -28,7 +28,10 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td>{{ $product->category->name }}</td>
+                        <td>
+                            {{ $product->category->parent ? $product->category->parent->name . ' -> ' : '' }}
+                            {{ $product->category->name }}
+                        </td>
                         <td>{{ $product->name }}</td>
                         <td>{{ $product->price }}</td>
                         <td>
