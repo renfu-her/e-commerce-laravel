@@ -30,7 +30,7 @@ class BlogController extends Controller
 
         $request->validate([
             'title' => 'required',
-            'content' => 'required',
+            'description' => 'required',
             'image' => 'nullable|image|max:10240',
             'published_at' => 'nullable|date',
             'is_published' => 'boolean',
@@ -62,7 +62,7 @@ class BlogController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'content' => 'required',
+            'description' => 'required',
             'image' => 'nullable|image|max:10240',
             'is_published' => 'required|boolean',
             'published_at' => 'nullable|date_format:Y-m-d H:i',

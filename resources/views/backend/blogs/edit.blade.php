@@ -19,7 +19,7 @@
     <script src="{{ asset('tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: '#content',
+            selector: 'textarea[name=description]',
             license_key: 'gpl',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
@@ -80,7 +80,7 @@
             // ... 其他配置保持不變 ...
             setup: function(editor) {
                 editor.on('init', function() {
-                    var content = document.getElementById('product-description').value;
+                    var content = document.getElementById('blog-description').value;
                     // 替換圖片路徑
                     content = content.replace(/src="\.\.\/\.\.\/storage/g, 'src="/storage');
                     editor.setContent(content);

@@ -5,8 +5,11 @@
 </div>
 
 <div class="mb-3">
-    <label for="content" class="form-label">文章內容</label>
-    <textarea class="form-control" id="content" name="content" rows="10" required>{{ old('content', $blog->content ?? '') }}</textarea>
+    <label for="description" class="form-label">文章內容</label>
+    <textarea class="form-control" name="description" rows="10" required>{{ old('description', $blog->description ?? '') }}</textarea>
+    <textarea id="blog-description" style="display: none;">
+        {!! old('description', $blog->description ?? '') !!}
+    </textarea>
 </div>
 
 <div class="mb-3">
@@ -40,7 +43,7 @@
 </div>
 
 <div class="text-center m-1">
-    <button type="submit" class="btn btn-primary">
+    <button type="button" id="submit-button" class="btn btn-primary">
         @if (isset($blog))
             更新
         @else
@@ -65,4 +68,18 @@
 
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
+
+@push('scripts')
+    <script>
+        $(function() {
+            $('#submit-button').on('click', function() {
+                @if (isset($blog))
+                    var description = $('#blog-description').val();
+                    $('#blog-real-description').val(description);
+                @endif
+                $(this).closest('form').submit();
+            });
+        });
+    </script>
 @endpush
