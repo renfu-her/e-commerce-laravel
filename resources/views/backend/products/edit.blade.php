@@ -17,7 +17,7 @@
                                     <optgroup label="{{ $parent->name }}">
                                         @foreach ($parent->children as $child)
                                             <option value="{{ $child->id }}"
-                                                {{ isset($product) && $product->category_id == $child->id ? 'selected' : '' }}>
+                                                {{ $product->category_id == $child->id ? 'selected' : '' }}>
                                                 {{ $child->name }}
                                             </option>
                                         @endforeach
@@ -35,6 +35,23 @@
                             <input type="number" class="form-control" id="price" name="price"
                                 value="{{ $product->price }}" required>
                         </div>
+                        <!-- 新增數量字段 -->
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">數量</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                value="{{ $product->quantity }}" required>
+                        </div>
+                        <!-- 新增狀態字段 -->
+                        <div class="mb-3">
+                            <label for="status" class="form-label">狀態</label>
+                            <select class="form-control" id="status" name="status" required>
+                                @foreach (App\Models\Product::getStatuses() as $value => $label)
+                                    <option value="{{ $value }}" {{ $product->status == $value ? 'selected' : '' }}>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="mb-3">
                             <label for="images" class="form-label">當前圖片</label>
                             <div>
@@ -44,7 +61,6 @@
                                 @endforeach
                             </div>
                         </div>
-
                         <div class="mb-3">
                             <label for="images" class="form-label">重新上傳圖片 (可以多選)</label>
                             <input type="file" class="form-control" id="images" name="images[]" multiple>

@@ -24,7 +24,7 @@
         </li> --}}
         <li class="nav-item">
             <a class="nav-link" href="{{ route('backend.products.index') }}">
-                <i class="icon-handbag menu-icon"></i>
+                <i class="icon-file-subtract menu-icon"></i>
                 <span class="menu-title">商品管理</span>
             </a>
         </li>

@@ -16,8 +16,7 @@
                                 @foreach ($categories as $parent)
                                     <optgroup label="{{ $parent->name }}">
                                         @foreach ($parent->children as $child)
-                                            <option value="{{ $child->id }}"
-                                                {{ isset($product) && $product->category_id == $child->id ? 'selected' : '' }}>
+                                            <option value="{{ $child->id }}">
                                                 {{ $child->name }}
                                             </option>
                                         @endforeach
@@ -32,6 +31,19 @@
                         <div class="mb-3">
                             <label for="price" class="form-label">價格</label>
                             <input type="number" class="form-control" id="price" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">數量</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                        </div>
+                        <!-- 新增狀態字段 -->
+                        <div class="mb-3">
+                            <label for="status" class="form-label">狀態</label>
+                            <select class="form-control" id="status" name="status" required>
+                                @foreach (App\Models\Product::getStatuses() as $value => $label)
+                                    <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="images" class="form-label">上傳圖片 (可以多選)</label>
