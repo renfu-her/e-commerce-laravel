@@ -28,12 +28,13 @@ class ProductController extends Controller
     // 儲存新產品
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
-            'description' => 'required', // 驗證 description 欄位
+            'description' => 'required',
+            'quantity' => 'required|integer|min:0',
+            'status' => 'required|in:' . implode(',', array_keys(Product::getStatuses())),
             'images' => 'nullable',
             'images.*' => 'image|max:10240',
         ]);
@@ -53,7 +54,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('backend.products.index')->with('success', '產品已成功新增.');
+        return redirect()->route('backend.products.index')->with('success', '產品已成功新增。');
     }
 
     // 顯示編輯產品表單
@@ -66,13 +67,13 @@ class ProductController extends Controller
     // 更新產品
     public function update(Request $request, Product $product)
     {
-
-        //dd($request->file('images'));
         $request->validate([
             'name' => 'required',
             'price' => 'required|numeric',
             'category_id' => 'required|exists:categories,id',
-            'description' => 'required', // 驗證 description 欄位
+            'description' => 'required',
+            'quantity' => 'required|integer|min:0',
+            'status' => 'required|in:' . implode(',', array_keys(Product::getStatuses())),
             'images' => 'nullable',
             'images.*' => 'image|max:10240',
         ]);
@@ -96,7 +97,7 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('backend.products.index')->with('success', '產品更新成功.');
+        return redirect()->route('backend.products.index')->with('success', '產品更新成功。');
     }
 
     // 刪除產品
@@ -108,6 +109,6 @@ class ProductController extends Controller
         }
 
         $product->delete();
-        return redirect()->route('backend.products.index')->with('success', '產品刪除成功.');
+        return redirect()->route('backend.products.index')->with('success', '產品刪除成功。');
     }
 }

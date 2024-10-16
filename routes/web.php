@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\BlogController;
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 
 // 認證路由
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -45,9 +46,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'backend.
     // 產品管理路由
     Route::resource('products', ProductController::class);
 
-    // 選單管理路由
-    Route::resource('menus', MenuController::class);
-
     // 分類管理路由
     Route::resource('categories', CategoryController::class);
 
@@ -57,5 +55,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'backend', 'as' => 'backend.
 
 // 默認重定向
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/product/{product}', [FrontendProductController::class, 'show'])->name('product.show');
 
 Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('image.upload');

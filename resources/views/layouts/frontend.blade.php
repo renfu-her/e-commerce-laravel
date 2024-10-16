@@ -27,6 +27,10 @@
         href="{{ asset('frontend/images/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed"
         href="{{ asset('frontend/images/ico/apple-touch-icon-57-precomposed.png') }}">
+
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css?v=' . time()) }}">
+
+    @stack('styles')
 </head><!--/head-->
 
 <body>
@@ -62,7 +66,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img src="{{ asset('frontend/images/home/logo.png') }}"
+                            <a href="/"><img src="{{ asset('frontend/images/home/logo.png') }}"
                                     alt="" /></a>
                         </div>
                     </div>
@@ -96,25 +100,9 @@
                         </div>
                         <div class="mainmenu pull-left">
                             <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a href="index.html">首頁</a></li>
-                                <li class="dropdown"><a href="#" class="active">商品<i
-                                            class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html" class="active">商品列表</a></li>
-                                        <li><a href="product-details.html">商品詳細</a></li>
-                                        <li><a href="checkout.html">結帳</a></li>
-                                        <li><a href="cart.html">購物車</a></li>
-                                        <li><a href="login.html">登入</a></li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown"><a href="#">Blog 部落格<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="blog.html">Blog 列表</a></li>
-                                        <li><a href="blog-single.html">Blog 單頁</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="404.html">404 頁面</a></li>
-                                <li><a href="contact-us.html">聯絡我們</a></li>
+                                <li><a href="{{ route('home') }}">首頁</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">聯絡我們</a></li>
                             </ul>
                         </div>
                     </div>
@@ -127,12 +115,6 @@
             </div>
         </div>
     </header>
-
-    <section id="advertisement">
-        <div class="container">
-            <img src="{{ asset('frontend/images/shop/advertisement.jpg') }}" alt="" />
-        </div>
-    </section>
 
     @yield('content')
 
@@ -206,11 +188,7 @@
 
         <div class="footer-bottom">
             <div class="container">
-                <div class="row">
-                    <p class="pull-left">Copyright © 2013 E-Shopper. All rights reserved.</p>
-                    <p class="pull-right">Designed by <span><a target="_blank"
-                                href="http://www.themeum.com">Themeum</a></span></p>
-                </div>
+
             </div>
         </div>
 
@@ -225,6 +203,8 @@
     <script src="{{ asset('frontend/js/price-range.js') }}"></script>
     <script src="{{ asset('frontend/js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

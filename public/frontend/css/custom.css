@@ -1,0 +1,19 @@
+#similar-product .carousel-inner .item .row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+#similar-product .carousel-inner .item .row .col-xs-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+#similar-product .carousel-inner .item .row .col-xs-4 img {
+    width: 100%;
+    height: auto;
+}
+
+.view-product {
+    object-fit: cover;
+}
+

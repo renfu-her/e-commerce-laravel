@@ -24,6 +24,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
 
+
     @stack('styles')
 </head>
 
