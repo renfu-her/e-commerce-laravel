@@ -31,16 +31,20 @@
                         <td>{{ $category->parent ? $category->parent->name : '無' }}</td>
                         <td>
                             <a class="btn btn-info m-1" href="{{ route('backend.categories.edit', $category->id) }}">
-                                <i class="fas fa-edit"></i>
-                                編輯
+                                <div class="m-2">
+                                    <i class="fas fa-edit"></i>
+                                    編輯
+                                </div>
                             </a>
                             <form action="{{ route('backend.categories.destroy', $category->id) }}" method="POST"
                                 class="d-inline-block" onsubmit="return confirm('您確定要刪除這個分類嗎？');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger m-1">
-                                    <i class="fas fa-trash"></i>
-                                    刪除
+                                    <div class="m-2">
+                                        <i class="fas fa-trash"></i>
+                                        刪除
+                                    </div>
                                 </button>
                             </form>
                         </td>
@@ -52,16 +56,21 @@
                             <td>{{ $child->parent ? $child->parent->name : '無' }}</td>
                             <td>
                                 <a class="btn btn-info m-1" href="{{ route('backend.categories.edit', $child->id) }}">
-                                    <i class="fas fa-edit"></i>
-                                    編輯
+                                    <div class="m-2">
+                                        <i class="fas fa-edit"></i>
+                                        編輯
+                                    </div>
                                 </a>
                                 <form action="{{ route('backend.categories.destroy', $child->id) }}" method="POST"
                                     class="d-inline-block" onsubmit="return confirm('您確定要刪除這個分類嗎？');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger m-1">
-                                        <i class="fas fa-trash"></i>
-                                        刪除
+                                    <div type="submit" class="btn btn-danger m-1">
+                                        <div class="m-2">
+                                            <i class="fas fa-trash"></i>
+                                            刪除
+                                        </div>
+                                    </div>
                                     </button>
                                 </form>
                             </td>
@@ -87,18 +96,7 @@
         $(function() {
             $('#categoriesTable').DataTable({
                 "language": {
-                    "lengthMenu": "顯示 _MENU_ 筆資料",
-                    "zeroRecords": "沒有符合的結果",
-                    "info": "顯示第 _START_ 到 _END_ 筆資料，總共 _TOTAL_ 筆",
-                    "infoEmpty": "沒有資料",
-                    "infoFiltered": "(從 _MAX_ 筆資料中過濾)",
-                    "search": "搜尋：",
-                    "paginate": {
-                        "first": "第一頁",
-                        "last": "最後一頁",
-                        "next": "下一頁",
-                        "previous": "上一頁"
-                    }
+                    "url": '//cdn.datatables.net/plug-ins/2.1.8/i18n/zh-HANT.json',
                 },
                 "columnDefs": [{
                     "orderable": false,

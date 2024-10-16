@@ -36,6 +36,13 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('backend.blogs.index') }}">
+                <i class="icon-file menu-icon"></i>
+                <span class="menu-title">文章管理</span>
+            </a>
+        </li>
+
         <!-- 更多導航項目 -->
         <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"

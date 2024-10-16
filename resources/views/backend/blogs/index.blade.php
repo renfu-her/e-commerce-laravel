@@ -3,10 +3,10 @@
 @section('content')
     <div class="container mt-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>選單列表</h2>
-            <a class="btn btn-primary" href="{{ route('backend.menus.create') }}">
+            <h2>博客文章列表</h2>
+            <a class="btn btn-primary" href="{{ route('backend.blogs.create') }}">
                 <i class="mdi mdi-plus"></i>
-                新增選單
+                新增文章
             </a>
         </div>
 
@@ -16,28 +16,30 @@
             </div>
         @endif
 
-        <table id="menusTable" class="table table-bordered">
+        <table id="blogsTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>名稱</th>
-                    <th>描述</th>
+                    <th>標題</th>
+                    <th>作者</th>
+                    <th>發布日期</th>
                     <th style="width: 17%">操作</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($menus as $menu)
+                @foreach ($blogs as $blog)
                     <tr>
-                        <td>{{ $menu->name }}</td>
-                        <td>{{ $menu->description }}</td>
+                        <td>{{ $blog->title }}</td>
+                        <td>{{ $blog->author }}</td>
+                        <td>{{ $blog->published_at->format('Y-m-d') }}</td>
                         <td>
-                            <a class="btn btn-info m-1" href="{{ route('backend.me  nus.edit', $menu->id) }}">
+                            <a class="btn btn-info m-1" href="{{ route('backend.blogs.edit', $blog->id) }}">
                                 <div class="m-2">
                                     <i class="fas fa-edit"></i>
                                     編輯
                                 </div>
                             </a>
-                            <form action="{{ route('backend.menus.destroy', $menu->id) }}" method="POST"
-                                class="d-inline-block" onsubmit="return confirm('您確定要刪除這個選單嗎？');">
+                            <form action="{{ route('backend.blogs.destroy', $blog->id) }}" method="POST"
+                                class="d-inline-block" onsubmit="return confirm('您確定要刪除這篇文章嗎？');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger m-1">
@@ -64,25 +66,16 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(function() {
-            $('#menusTable').DataTable({
+            $('#blogsTable').DataTable({
                 "language": {
-                    "lengthMenu": "顯示 _MENU_ 筆資料",
-                    "zeroRecords": "沒有符合的結果",
-                    "info": "顯示第 _START_ 到 _END_ 筆資料，總共 _TOTAL_ 筆",
-                    "infoEmpty": "沒有資料",
-                    "infoFiltered": "(從 _MAX_ 筆資料中過濾)",
-                    "search": "搜尋：",
-                    "paginate": {
-                        "first": "第一頁",
-                        "last": "最後一頁",
-                        "next": "下一頁",
-                        "previous": "上一頁"
-                    }
+                    "url": '//cdn.datatables.net/plug-ins/2.1.8/i18n/zh-HANT.json',
                 },
                 "columnDefs": [{
                     "orderable": false,
                     "targets": -1
-                }]
+                }],
+                "responsive": true,
+                "ordering": true,
             });
         });
     </script>
