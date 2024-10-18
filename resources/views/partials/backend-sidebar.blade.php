@@ -45,12 +45,12 @@
 
         <!-- 更多導航項目 -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}"
+            <a class="nav-link" href="{{ route('backend.logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="icon-support menu-icon"></i>
                 <span class="menu-title">登出</span>
             </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('backend.logout') }}" method="POST" class="d-none">
                 @csrf
             </form>
         </li>

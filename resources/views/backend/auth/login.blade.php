@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LibertyUI Premium Bootstrap Admin Dashboard Template - Login</title>
+    <title>後台登入</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -32,11 +32,11 @@
                     <div class="col-lg-6 mx-auto">
                         <div class="auth-form-light text-left p-5">
                             <div class="brand-logo text-center">
-                                <h3>管理系統</h3>
+                                <h3>後台管理系統</h3>
                                 <h4 class="fw-light">登入</h4>
                             </div>
 
-                            <form method="POST" action="{{ route('login') }}" class="pt-3">
+                            <form method="POST" action="{{ route('backend.login') }}" class="pt-3">
                                 @csrf
                                 <div class="form-group">
                                     <input type="email"
@@ -73,10 +73,11 @@
                                             保持登入
                                         </label>
                                     </div>
-                                    <a href="{{ route('password.request') }}" class="auth-link text-black">忘記密碼?</a>
+                                    <a href="{{ route('backend.password.request') }}"
+                                        class="auth-link text-black">忘記密碼?</a>
                                 </div>
                                 <div class="text-center mt-4 fw-light">
-                                    還沒有帳號? <a href="{{ route('register') }}" class="text-primary">註冊</a>
+                                    還沒有帳號? <a href="{{ route('backend.register') }}" class="text-primary">註冊</a>
                                 </div>
                             </form>
                         </div>

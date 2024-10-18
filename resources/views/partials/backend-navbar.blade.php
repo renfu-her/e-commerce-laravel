@@ -19,12 +19,12 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        <a class="dropdown-item" href="{{ route('backend.logout') }}"
                             onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                             登出
                         </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('backend.logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                     </li>

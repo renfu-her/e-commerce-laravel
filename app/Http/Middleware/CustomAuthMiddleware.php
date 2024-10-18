@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+
 class CustomAuthMiddleware
 {
     /**
@@ -17,7 +18,7 @@ class CustomAuthMiddleware
     {
         // 檢查用戶是否已經登錄
         if (!Auth::check()) {
-            return redirect('login'); // 如果未登錄，重定向到登錄頁
+            return redirect('backend/login'); // 如果未登錄，重定向到登錄頁
         }
 
         // 檢查用戶角色
